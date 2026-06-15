@@ -671,6 +671,7 @@
       transition: border-color 0.25s, transform 0.25s;
     }
     .proj-card:hover { border-color: var(--glow); transform: translateY(-3px); }
+    .proj-card.wide { grid-column: span 2; }
     .proj-card .proj-title { font-size: 1.05rem; margin-bottom: 3px; }
     .proj-card .proj-desc { flex: 1; margin-bottom: 14px; }
 
@@ -1183,7 +1184,7 @@
       <div class="proj-grid">
 
         <!-- Scheme Interpreter -->
-        <div class="proj-card reveal">
+        <div class="proj-card wide reveal">
           <span class="tag" style="margin-bottom:11px">Organization of Programming Languages</span>
           <figure class="proj-shot">
             <img src="SchemeInterpreterFactorial.png" alt="REPL session evaluating a recursive factorial function in the Scheme interpreter" />
