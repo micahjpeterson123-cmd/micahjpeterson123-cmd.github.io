@@ -111,6 +111,48 @@
       margin-bottom: 44px;
     }
 
+    /* Make clickable images show a pointer */
+    .lightbox-trigger {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .lightbox-trigger:hover {
+        transform: scale(1.02);
+    }
+
+    /* Lightbox background */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+    /* Full-size image */
+    .lightbox-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 95vw;
+        max-height: 95vh;
+        object-fit: contain;
+    }
+
+    /* Close button */
+    .lightbox-close {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        user-select: none;
+    }
+
     /* reveal on scroll */
     .reveal {
       opacity: 0;
@@ -850,6 +892,12 @@
     </div>
   </nav>
 
+  <!-- lightbox -->
+   <div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-image" class="lightbox-image" alt="">
+   </div>
+
   <!-- ╔══════════════════════════════╗
        ║            HERO              ║
        ╚══════════════════════════════╝ -->
@@ -1129,7 +1177,7 @@
             </div>
             <div class="media-item">
               <div class="media-img-wrap" style="height:360px">
-                <img src="FullCane.png" alt="Full Smart Cane Prototype" style="height:100%; width:100%; object-fit:contain;" />
+                <img src="FullCane.png" alt="Full Smart Cane Prototype" style="height:100%; width:100%; object-fit:contain;" class="lightbox-trigger"/>
               </div>
               <span class="media-cap">Final Prototype</span>
             </div>
@@ -1139,13 +1187,13 @@
           <div class="media-row">
             <div class="media-item">
               <div class="media-img-wrap" style="height:240px">
-                <img src="InsideHandle.png" alt="Inside the Smart Cane Handle" />
+                <img src="InsideHandle.png" alt="Inside the Smart Cane Handle" class="lightbox-trigger"/>
               </div>
               <span class="media-cap">Inside the Handle — Electronics Assembly</span>
             </div>
             <div class="media-item">
               <div class="media-img-wrap" style="height:240px">
-                <img src="HandleSchematic.png" alt="Handle Component Layout CAD" />
+                <img src="HandleSchematic.png" alt="Handle Component Layout CAD" class="lightbox-trigger"/>
               </div>
               <span class="media-cap">Handle Component Layout (CAD)</span>
             </div>
@@ -1155,13 +1203,13 @@
           <div class="media-row">
             <div class="media-item">
               <div class="media-img-wrap" style="height:300px">
-                <img src="UltraSonics.png" alt="Dual Ultrasonic Sensor Housing" />
+                <img src="UltraSonics.png" alt="Dual Ultrasonic Sensor Housing" class="lightbox-trigger"/>
               </div>
               <span class="media-cap">Dual Ultrasonic Sensor Housing (3D Printed)</span>
             </div>
             <div class="media-item">
               <div class="media-img-wrap" style="height:300px">
-                <img src="UltraSonicsSchematic.png" alt="Sensor Detection Angle Diagram" />
+                <img src="UltraSonicsSchematic.png" alt="Sensor Detection Angle Diagram" class="lightbox-trigger"/>
               </div>
               <span class="media-cap">Sensor Detection Angle Diagram — 15° separation, 7.5° half-beam</span>
             </div>
@@ -1171,7 +1219,7 @@
           <div class="media-row single">
             <div class="media-item">
               <div class="media-img-wrap" style="height:200px">
-                <img src="BatteryPack.png" alt="Battery Pack Layout Sketch" />
+                <img src="BatteryPack.png" alt="Battery Pack Layout Sketch" class="lightbox-trigger"/>
               </div>
               <span class="media-cap">Rechargable Battery Pack Layout — 18650 Li-ion · TP4056 Charger · MT3608 Boost Converter</span>
             </div>
@@ -1187,7 +1235,7 @@
         <div class="proj-card wide reveal">
           <span class="tag" style="margin-bottom:11px">Organization of Programming Languages</span>
           <figure class="proj-shot">
-            <img src="SchemeInterpreterFactorial.png" alt="REPL session evaluating a recursive factorial function in the Scheme interpreter" />
+            <img src="SchemeInterpreterFactorial.png" alt="REPL session evaluating a recursive factorial function in the Scheme interpreter" class="lightbox-trigger"/>
             <figcaption>REPL — recursive factorial via (define factorial ...)</figcaption>
           </figure>
           <div class="proj-title">Scheme Interpreter</div>
@@ -1217,7 +1265,7 @@
         <div class="proj-card reveal">
           <span class="tag" style="margin-bottom:11px">Algorithms &amp; Advanced Data Structures</span>
           <figure class="proj-shot">
-            <img src="LandBaron.png" alt="Land Baron Game Board" />
+            <img src="LandBaron.png" alt="Land Baron Game Board" class="lightbox-trigger"/>
             <figcaption>Land Baron Game Board</figcaption>
           </figure>
           <div class="proj-title">Land Baron</div>
@@ -1242,12 +1290,24 @@
         <!-- Paintball Arduino -->
         <div class="proj-card reveal">
           <span class="tag" style="margin-bottom:11px">Microprocessors</span>
+          <div class="media-item">
+              <div class="media-img-wrap" style="height:360px">
+                <iframe
+                  src="https://www.youtube.com/embed/CUwAG6yQuLk"
+                  title="Paintball Demo Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  style="height:100%; width:100%; object-fit:contain;"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <span class="media-cap">▶ Paintball Demo Video</span>
+          </div>
           <div class="proj-title">Paintball</div>
           <div class="proj-course">Arduino UNO · Embedded Game System</div>
           <p class="proj-desc">
             A physical, interactive game running on an Arduino UNO as a finite state machine.
-            Integrates RFID access control, two servo-motor paintball guns, six LEDs, and an LCD —
-            with a randomized computer opponent.
+            Integrates RFID access control, two servo-motor paintball guns, six LEDs, an LCD, and 
+            a randomized computer opponent.
           </p>
           <div class="proj-chips">
             <span class="tag">Arduino</span>
@@ -1256,6 +1316,10 @@
             <span class="tag">Servo Motors</span>
             <span class="tag">FSM</span>
           </div>
+          <a href="https://github.com/micahjpeterson123-cmd/Paintball" target="_blank" rel="noopener" class="proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            View Source on GitHub
+          </a>
         </div>
 
         <!-- Flappy Bird -->
@@ -1448,6 +1512,42 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => ioReveal.observe(el));
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightbox-image");
+        const closeButton = document.querySelector(".lightbox-close");
+
+        document.querySelectorAll(".lightbox-trigger").forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+                lightbox.style.display = "block";
+                document.body.style.overflow = "hidden";
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        closeButton.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && lightbox.style.display === "block") {
+                closeLightbox();
+            }
+        });
+    });
   </script>
 </body>
 </html>
